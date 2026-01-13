@@ -2,7 +2,7 @@
 
 # Laravel Permission Fix Script
 # Run this script in your Laravel root directory to audit and fix permissions
-# Usage: curl -sSL https://raw.githubusercontent.com/max1v/laravel-directory-permissions/main/run.sh | bash
+# Usage: sudo bash -c "$(curl -sSL https://raw.githubusercontent.com/max1v/laravel-directory-permissions/main/run.sh)"
 
 set -e
 

@@ -7,7 +7,7 @@ A bash script to automatically fix and audit Laravel directory permissions for p
 Run this script directly in your Laravel root directory:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/max1v/laravel-directory-permissions/main/run.sh | bash
+sudo bash -c "$(curl -sSL https://raw.githubusercontent.com/max1v/laravel-directory-permissions/main/run.sh)"
 ```
 
 ## 📋 What It Does

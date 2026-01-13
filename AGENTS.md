@@ -22,7 +22,7 @@ laravel_audit /path/to/laravel/project
 ./run.sh
 
 # Test via curl (simulating public usage)
-curl -sSL https://raw.githubusercontent.com/your-repo/laravel-directory-permissions/main/run.sh | bash
+sudo bash -c "$(curl -sSL https://raw.githubusercontent.com/your-repo/laravel-directory-permissions/main/run.sh)"
 ```
 
 ### Manual Testing
@@ -145,7 +145,7 @@ Always test in a safe environment before applying to production Laravel applicat
 
 ## Public Distribution Guidelines
 - The `run.sh` script is designed for public GitHub distribution
-- Use curl command for one-line installation: `curl -sSL <url> | bash`
+- Use curl command for one-line installation: `sudo bash -c "$(curl -sSL <url> | bash)"`
 - Script must be self-contained with all functions defined
 - Include proper error handling with `set -e`
 - Use clear step-by-step output with colored formatting
