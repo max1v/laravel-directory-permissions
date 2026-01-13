@@ -6,6 +6,10 @@
 
 set -e
 
+# Capture the original user before sudo escalation
+ORIGINAL_USER=${SUDO_USER:-$USER}
+WEB_GROUP="www-data"
+
 # Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -92,7 +96,7 @@ function fix-perms() {
 
     git config core.fileMode false
     # 2. Set Owner (Dynamic User)
-    sudo chown -R $USER:www-data .
+    sudo chown -R $ORIGINAL_USER:$WEB_GROUP .
 
     # 3. Set Base Permissions (Files 644, Dirs 755)
     # We ignore the .git folder to speed things up significantly
