@@ -57,11 +57,13 @@ cd /path/to/laravel && /path/to/run.sh
 
 ### Shell Script Conventions
 - Use bash functions with descriptive names
-- Use snake_case for function names and variable names
+- Use snake_case for function names and variable names (e.g., `laravel_audit`, `web_group`)
+- Use UPPER_CASE for constants and environment variables (e.g., `RED`, `ORIGINAL_USER`)
 - Prefix functions with clear action verbs (fix-, audit-, check-, etc.)
 - Use POSIX-compliant bash syntax
 - Include shebang `#!/bin/bash` at top of executable scripts
 - Use `set -e` for error handling in distribution scripts
+- Use `local` for function-local variables to avoid global pollution
 
 ### Error Handling
 - Always check if required files/directories exist before proceeding
@@ -100,13 +102,21 @@ cd /path/to/laravel && /path/to/run.sh
 - Exclude `node_modules/` and `vendor/` from security scans
 - Use `-maxdepth` parameter for security scans to limit scope
 - Use `find` with `-exec` for batch operations instead of loops
+- Disable git filemode tracking (`git config core.fileMode false`) to prevent permission changes in commits
 
 ### Function Structure
-1. Safety checks first (validate environment)
-2. Declare local variables and colors
-3. Main logic operations
-4. Clear success/failure feedback
-5. Proper return codes
+1. Safety checks first (validate environment, check required files)
+2. Declare local variables and constants at function start
+3. Main logic operations with clear error handling
+4. Clear success/failure feedback with colored output
+5. Proper return codes (0 for success, 1 for errors)
+
+### Variable and Import Guidelines
+- No external imports - this is a pure bash script
+- All variables are local unless explicitly global
+- Capture sudo user with `ORIGINAL_USER=${SUDO_USER:-$USER}`
+- Use descriptive variable names: `web_group`, `target_dir`, `writable_dirs`
+- Constants at top level: colors, default groups, permission numbers
 
 ### Script Structure for Distribution Scripts
 1. Shebang and error handling (`set -e`)
